@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65974e39-8a09-4265-8fb6-9cae985950da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/glide_text2im/gaussian_diffusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/glide_text2im/gaussian_diffusion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

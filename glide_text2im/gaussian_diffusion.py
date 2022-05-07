@@ -148,7 +148,7 @@ class GaussianDiffusion:
         *,
         betas,
     ):
-        self.loss_type = LossType.KL
+        self.loss_type = LossType.MSE
         # Use float64 for accuracy.
         betas = np.array(betas, dtype=np.float64)
         self.betas = betas
