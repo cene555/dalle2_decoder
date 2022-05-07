@@ -10,7 +10,8 @@ def get_loader(batch_size, resolution, image_paths, clip_embedings, tokens, mask
     loader = DataLoader(
         dataset, batch_size=batch_size, shuffle=shuffle, num_workers=1, drop_last=True
     )
-    return loader
+    while True:
+        yield from loader
 
 
 class ImageDataset(Dataset):
