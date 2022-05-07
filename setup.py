@@ -1,19 +1,19 @@
 from setuptools import setup
 
 setup(
-    name="dalle2-decoder",
+    name="glide-text2im",
     packages=[
-        "dalle2_decoder",
-        "dalle2_decoder.clip",
-        "dalle2_decoder.tokenizer",
+        "glide_text2im",
+        "glide_text2im.clip",
+        "glide_text2im.tokenizer",
     ],
     package_data={
-        "dalle2_decoder.tokenizer": [
+        "glide_text2im.tokenizer": [
             "bpe_simple_vocab_16e6.txt.gz",
             "encoder.json.gz",
             "vocab.bpe.gz",
         ],
-        "dalle2_decoder.clip": ["config.yaml"],
+        "glide_text2im.clip": ["config.yaml"],
     },
     install_requires=[
         "Pillow",
@@ -25,8 +25,6 @@ setup(
         "ftfy",
         "regex",
         "numpy",
-        "mpi4py",
-        "blobfile"
     ],
     author="OpenAI",
 )
