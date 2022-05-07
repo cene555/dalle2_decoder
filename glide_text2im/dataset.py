@@ -61,7 +61,7 @@ class ImageDataset(Dataset):
         clip_embeding = torch.tensor(clip_embeding).float()
 
         tokens_sample = self.tokens[idx]
-        mask = self.mask[idx]
+        mask = self.masks[idx]
         if np.random.binomial(1, self.zero_text_prob):
             tokens_sample = [self.pad_token] * len(tokens_sample)
             mask = [False] * len(mask)
