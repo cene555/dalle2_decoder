@@ -150,6 +150,7 @@ class GaussianDiffusion:
     ):
         self.loss_type = LossType.MSE
         self.rescale_timesteps = True
+        self.model_mean_type = ModelMeanType.START_X
         # Use float64 for accuracy.
         betas = np.array(betas, dtype=np.float64)
         self.betas = betas
