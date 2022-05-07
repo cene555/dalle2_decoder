@@ -66,7 +66,7 @@ class ImageDataset(Dataset):
             tokens_sample = [self.pad_token] * len(tokens_sample)
             mask = [False] * len(mask)
         tokens_sample = torch.tensor(tokens_sample)
-        mask = th.tensor(
+        mask = torch.tensor(
             mask,
             dtype=torch.bool,
             )
