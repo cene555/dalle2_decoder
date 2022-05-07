@@ -149,6 +149,7 @@ class GaussianDiffusion:
         betas,
     ):
         self.loss_type = LossType.MSE
+        self.rescale_timesteps = rescale_timesteps
         # Use float64 for accuracy.
         betas = np.array(betas, dtype=np.float64)
         self.betas = betas
@@ -197,6 +198,11 @@ class GaussianDiffusion:
         variance = _extract_into_tensor(1.0 - self.alphas_cumprod, t, x_start.shape)
         log_variance = _extract_into_tensor(self.log_one_minus_alphas_cumprod, t, x_start.shape)
         return mean, variance, log_variance
+
+    def _scale_timesteps(self, t):
+        if self.rescale_timesteps:
+            return t.float() * (1000.0 / self.num_timesteps)
+        return t
 
     def q_sample(self, x_start, t, noise=None):
         """
