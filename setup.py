@@ -25,6 +25,8 @@ setup(
         "ftfy",
         "regex",
         "numpy",
+        "blobfile",
+        "mpi4py",
     ],
     author="OpenAI",
 )
