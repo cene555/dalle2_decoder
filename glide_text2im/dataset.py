@@ -26,7 +26,7 @@ class ImageDataset(Dataset):
         self.zero_text_prob = zero_text_prob
 
     def __len__(self):
-        return len(self.local_images)
+        return len(self.image_paths)
 
     def __getitem__(self, idx):
         path = self.image_paths[idx]
