@@ -70,8 +70,7 @@ class ImageDataset(Dataset):
             mask,
             dtype=torch.bool,
             )
-        if self.local_classes is not None:
-            out_dict["clip_emb"] = clip_embeding
-            out_dict["tokens"] = tokens_sample
-            out_dict["mask"] = mask
+        out_dict["clip_emb"] = clip_embeding
+        out_dict["tokens"] = tokens_sample
+        out_dict["mask"] = mask
         return np.transpose(arr, [2, 0, 1]), out_dict
