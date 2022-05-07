@@ -148,6 +148,7 @@ class GaussianDiffusion:
         *,
         betas,
     ):
+        self.loss_type = LossType.KL
         # Use float64 for accuracy.
         betas = np.array(betas, dtype=np.float64)
         self.betas = betas
@@ -724,10 +725,11 @@ class GaussianDiffusion:
         elif self.loss_type == LossType.MSE or self.loss_type == LossType.RESCALED_MSE:
             model_output = model(x_t, self._scale_timesteps(t), **model_kwargs)
 
-            if self.model_var_type in [
-                ModelVarType.LEARNED,
-                ModelVarType.LEARNED_RANGE,
-            ]:
+            #if self.model_var_type in [
+            #    ModelVarType.LEARNED,
+            #    ModelVarType.LEARNED_RANGE,
+            #]:
+            if True:
                 B, C = x_t.shape[:2]
                 assert model_output.shape == (B, C * 2, *x_t.shape[2:])
                 model_output, model_var_values = th.split(model_output, C, dim=1)
