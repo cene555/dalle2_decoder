@@ -27,6 +27,13 @@ def model_and_diffusion_defaults():
         xf_heads=8,
         xf_final_ln=True,
         xf_padding=True,
+        use_scale_shift_norm=True,
+        resblock_updown=True,
+        use_fp16=True,
+        cache_text_emb=False,
+        inpaint=False,
+        super_res=False,
+        
         learn_sigma=False,
         sigma_small=False,
         diffusion_steps=1000,
@@ -36,8 +43,7 @@ def model_and_diffusion_defaults():
         predict_xstart=False,
         rescale_timesteps=True,
         rescale_learned_sigmas=True,
-        use_checkpoint=False,
-        use_scale_shift_norm=True,
+
     )
 
 def model_and_diffusion_defaults_upsampler():
@@ -69,6 +75,13 @@ def create_model_and_diffusion(
     xf_heads,
     xf_final_ln,
     xf_padding,
+    use_scale_shift_norm,
+    resblock_updown,
+    use_fp16,
+    cache_text_emb,
+    inpaint,
+    super_res,
+
     learn_sigma,
     sigma_small,
     diffusion_steps,
@@ -78,8 +91,7 @@ def create_model_and_diffusion(
     predict_xstart,
     rescale_timesteps,
     rescale_learned_sigmas,
-    use_checkpoint,
-    use_scale_shift_norm,
+
 ):
     model = create_model(
         image_size,
