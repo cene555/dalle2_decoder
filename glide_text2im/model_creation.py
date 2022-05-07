@@ -33,7 +33,7 @@ def model_and_diffusion_defaults():
         cache_text_emb=False,
         inpaint=False,
         super_res=False,
-        
+
         learn_sigma=False,
         sigma_small=False,
         diffusion_steps=1000,
