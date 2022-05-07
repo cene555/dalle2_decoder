@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65974e39-8a09-4265-8fb6-9cae985950da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/glide_text2im/dist_util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/glide_text2im/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/glide_text2im/resample.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/glide_text2im/train_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/glide_text2im/fp16_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/glide_text2im/fp16_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/glide_text2im/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,5 +51,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
