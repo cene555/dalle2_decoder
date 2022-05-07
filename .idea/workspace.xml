@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65974e39-8a09-4265-8fb6-9cae985950da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/glide_text2im/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glide_text2im/model_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/glide_text2im/model_creation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glide_text2im/nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/glide_text2im/nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

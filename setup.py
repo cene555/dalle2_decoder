@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name="glide-text2im",
+    name="dalle2-decoder",
     packages=[
-        "glide_text2im",
-        "glide_text2im.clip",
-        "glide_text2im.tokenizer",
+        "dalle2_decoder",
+        "dalle2_decoder.clip",
+        "dalle2_decoder.tokenizer",
     ],
     package_data={
         "glide_text2im.tokenizer": [
@@ -25,6 +25,8 @@ setup(
         "ftfy",
         "regex",
         "numpy",
+        "mpi4py",
+        "blobfile"
     ],
     author="OpenAI",
 )
