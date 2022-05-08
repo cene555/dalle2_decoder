@@ -52,15 +52,6 @@ class Text2ImUNet(UNetModel):
 
     def convert_to_fp16(self):
         super().convert_to_fp16()
-        if self.xf_width:
-            self.transformer.apply(convert_module_to_f16)
-            self.transformer_proj.to(th.float16)
-            self.token_embedding.to(th.float16)
-            self.positional_embedding.to(th.float16)
-            if self.xf_padding:
-                self.padding_embedding.to(th.float16)
-            if self.xf_ar:
-                self.unemb.to(th.float16)
 
     def del_cache(self):
         self.cache = None
