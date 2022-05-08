@@ -34,7 +34,7 @@ def model_and_diffusion_defaults():
         inpaint=False,
         super_res=False,
 
-        learn_sigma=False,
+        learn_sigma=True,
         sigma_small=False,
         diffusion_steps=1000,
         noise_schedule="linear",
