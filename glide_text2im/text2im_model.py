@@ -73,7 +73,9 @@ class Text2ImUNet(UNetModel):
 
         self.cache_text_emb = cache_text_emb
         self.cache = None
-
+        #
+        self.clip_to_h = nn.Linear(768, 128)
+        #
     def convert_to_fp16(self):
         super().convert_to_fp16()
         if self.xf_width:
@@ -126,8 +128,9 @@ class Text2ImUNet(UNetModel):
         if self.xf_width:
             text_outputs = self.get_text_emb(tokens, mask)
             xf_proj, xf_out = text_outputs["xf_proj"], text_outputs["xf_out"]
-            print('text_outputs["xf_out"]', text_outputs["xf_out"].shape)
-            emb = emb + xf_proj.to(emb) + clip_emb.to(emb)
+            clip_emb = clip_emb.to(emb)
+            xf_out = xf_out * self.clip_to_h(clip_emb)
+            emb = emb + xf_proj.to(emb) + clip_emb
         else:
             xf_out = None
         h = x.type(self.dtype)
