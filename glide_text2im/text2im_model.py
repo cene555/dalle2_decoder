@@ -126,6 +126,7 @@ class Text2ImUNet(UNetModel):
         if self.xf_width:
             text_outputs = self.get_text_emb(tokens, mask)
             xf_proj, xf_out = text_outputs["xf_proj"], text_outputs["xf_out"]
+            print('text_outputs["xf_out"]', text_outputs["xf_out"].shape)
             emb = emb + xf_proj.to(emb) + clip_emb.to(emb)
         else:
             xf_out = None
