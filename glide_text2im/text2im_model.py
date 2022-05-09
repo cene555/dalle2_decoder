@@ -74,7 +74,8 @@ class Text2ImUNet(UNetModel):
         self.cache_text_emb = cache_text_emb
         self.cache = None
         #
-        self.clip_to_h = nn.Linear(768, 128)
+        self.time_to_half = nn.Linear(768, 768 // 2)
+        self.clip_to_half = nn.Linear(768, 768 // 2)
         #
     def convert_to_fp16(self):
         super().convert_to_fp16()
@@ -129,8 +130,7 @@ class Text2ImUNet(UNetModel):
             text_outputs = self.get_text_emb(tokens, mask)
             xf_proj, xf_out = text_outputs["xf_proj"], text_outputs["xf_out"]
             clip_emb = clip_emb.to(emb)
-            xf_out = xf_out * self.clip_to_h(clip_emb)
-            emb = emb + xf_proj.to(emb) + clip_emb
+            emb = torch.cat([self.time_to_half(emb + xf_proj.to(emb)), self.clip_to_half(clip_emb)], dim=1).to(clip_emb)
         else:
             xf_out = None
         h = x.type(self.dtype)
