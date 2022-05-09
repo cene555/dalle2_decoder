@@ -130,7 +130,7 @@ class Text2ImUNet(UNetModel):
             text_outputs = self.get_text_emb(tokens, mask)
             xf_proj, xf_out = text_outputs["xf_proj"], text_outputs["xf_out"]
             clip_emb = clip_emb.to(emb)
-            emb = torch.cat([self.time_to_half(emb + xf_proj.to(emb)), self.clip_to_half(clip_emb)], dim=1).to(clip_emb)
+            emb = th.cat([self.time_to_half(emb + xf_proj.to(emb)), self.clip_to_half(clip_emb)], dim=1).to(clip_emb)
         else:
             xf_out = None
         h = x.type(self.dtype)
