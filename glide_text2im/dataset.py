@@ -100,8 +100,8 @@ class SecondImageDataset(Dataset):
 
     def __getitem__(self, idx):
         
-        with open(self.json_paths[idx]) as json_file:
-            in_data = json.load(os.path.join(main_dir, json_file))[:100000]
+        with open(os.path.join(self.main_dir, self.json_paths[idx])) as json_file:
+            in_data = json.load(json_file)
         path = in_data['path']
         with bf.BlobFile(path, "rb") as f:
             pil_image = Image.open(f)
