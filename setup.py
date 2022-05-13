@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="glide-text2im",
+    name="dalle2_decoder",
     packages=[
         "glide_text2im",
         "glide_text2im.clip",
