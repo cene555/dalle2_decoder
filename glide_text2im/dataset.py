@@ -99,7 +99,7 @@ class SecondImageDataset(Dataset):
 
     def __getitem__(self, idx):
         
-        with open(json_paths[idx]) as json_file:
+        with open(self.json_paths[idx]) as json_file:
             in_data = json.load(json_file)[:100000]
         path = in_data['path']
         with bf.BlobFile(path, "rb") as f:
