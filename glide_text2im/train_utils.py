@@ -40,12 +40,14 @@ class TrainLoop:
         log_interval,
         save_interval,
         resume_checkpoint,
+        save_dir,
         use_fp16=False,
         fp16_scale_growth=1e-3,
         schedule_sampler=None,
         weight_decay=0.0,
         lr_anneal_steps=0,
     ):
+        self.save_dir = save_dir
         self.model = model
         self.diffusion = diffusion
         self.data = data
@@ -269,29 +271,9 @@ class TrainLoop:
             logger.logkv("lg_loss_scale", self.lg_loss_scale)
 
     def save(self):
-        def save_checkpoint(rate, params):
-            state_dict = self._master_params_to_state_dict(params)
-            if dist.get_rank() == 0:
-                logger.log(f"saving model {rate}...")
-                if not rate:
-                    filename = f"model{(self.step+self.resume_step):06d}.pt"
-                else:
-                    filename = f"ema_{rate}_{(self.step+self.resume_step):06d}.pt"
-                with bf.BlobFile(bf.join(get_blob_logdir(), filename), "wb") as f:
-                    th.save(state_dict, f)
-
-        save_checkpoint(0, self.master_params)
-        for rate, params in zip(self.ema_rate, self.ema_params):
-            save_checkpoint(rate, params)
-
-        if dist.get_rank() == 0:
-            with bf.BlobFile(
-                bf.join(get_blob_logdir(), f"opt{(self.step+self.resume_step):06d}.pt"),
-                "wb",
-            ) as f:
-                th.save(self.opt.state_dict(), f)
-
-        dist.barrier()
+        filename = os.path.join(self.save_dir, f'model_{self.step}.pt')
+        state_dict = self.model.state_dict()
+        th.save(state_dict, filename)
 
     def _master_params_to_state_dict(self, master_params):
         if self.use_fp16:
