@@ -14,13 +14,16 @@ def get_loader(batch_size, resolution, image_paths, clip_embedings, tokens, mask
     )
     while True:
         yield from loader
-def get_second_loader(batch_size, resolution, json_paths, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5, shuffle=True,)
+        
+        
+def get_second_loader(batch_size, resolution, json_paths, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5, shuffle=True,):
     dataset = SecondImageDataset(resolution, json_paths, pad_token, zero_clip_emb_prob, zero_text_prob)
     loader = DataLoader(
         dataset, batch_size=batch_size, shuffle=shuffle, num_workers=1, drop_last=True
     )
     while True:
         yield from loader
+   
 class ImageDataset(Dataset):
     def __init__(self, resolution, image_paths, clip_embedings, tokens, masks, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5):
         super().__init__()
