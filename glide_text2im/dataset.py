@@ -128,7 +128,7 @@ class SecondImageDataset(Dataset):
 
         out_dict = {}
 
-        clip_embeding = in_data['clip_emb']
+        clip_embeding = [float(i) for i in in_data['clip_emb']]
         if np.random.binomial(1, self.zero_clip_emb_prob):
             clip_embeding = [0] * len(clip_embeding)
         clip_embeding = torch.tensor(clip_embeding).float()
