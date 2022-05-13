@@ -3,17 +3,17 @@ from setuptools import setup
 setup(
     name="dalle2_decoder",
     packages=[
-        "glide_text2im",
-        "glide_text2im.clip",
-        "glide_text2im.tokenizer",
+        "dalle2_decoder",
+        "dalle2_decoder.clip",
+        "dalle2_decoder.tokenizer",
     ],
     package_data={
-        "glide_text2im.tokenizer": [
+        "dalle2_decoder.tokenizer": [
             "bpe_simple_vocab_16e6.txt.gz",
             "encoder.json.gz",
             "vocab.bpe.gz",
         ],
-        "glide_text2im.clip": ["config.yaml"],
+        "dalle2_decoder.clip": ["config.yaml"],
     },
     install_requires=[
         "Pillow",
