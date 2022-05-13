@@ -5,7 +5,7 @@ import numpy as np
 from torch.utils.data import DataLoader, Dataset
 import torch
 import json
-
+import os
 
 def get_loader(batch_size, resolution, image_paths, clip_embedings, tokens, masks, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5, shuffle=True,):  
     dataset = ImageDataset(resolution, image_paths, clip_embedings, tokens, masks, pad_token, zero_clip_emb_prob, zero_text_prob)
@@ -16,8 +16,8 @@ def get_loader(batch_size, resolution, image_paths, clip_embedings, tokens, mask
         yield from loader
         
         
-def get_second_loader(batch_size, resolution, json_paths, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5, shuffle=True,):
-    dataset = SecondImageDataset(resolution, json_paths, pad_token, zero_clip_emb_prob, zero_text_prob)
+def get_second_loader(batch_size, resolution, json_paths, main_dir, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5, shuffle=True,):
+    dataset = SecondImageDataset(resolution, json_paths, main_dir, pad_token, zero_clip_emb_prob, zero_text_prob)
     loader = DataLoader(
         dataset, batch_size=batch_size, shuffle=shuffle, num_workers=1, drop_last=True
     )
@@ -86,9 +86,10 @@ class ImageDataset(Dataset):
         out_dict["mask"] = mask
         return np.transpose(arr, [2, 0, 1]), out_dict
 class SecondImageDataset(Dataset):
-    def __init__(self, resolution, json_paths, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5):
+    def __init__(self, resolution, json_paths, main_dir, pad_token=50256, zero_clip_emb_prob=0.1, zero_text_prob=0.5):
         super().__init__()
         self.resolution = resolution
+        self.main_dir = main_dir
         self.json_paths = json_paths
         self.pad_token = pad_token
         self.zero_clip_emb_prob = zero_clip_emb_prob
@@ -100,7 +101,7 @@ class SecondImageDataset(Dataset):
     def __getitem__(self, idx):
         
         with open(self.json_paths[idx]) as json_file:
-            in_data = json.load(json_file)[:100000]
+            in_data = json.load(os.path.join(main_dir, json_file))[:100000]
         path = in_data['path']
         with bf.BlobFile(path, "rb") as f:
             pil_image = Image.open(f)
