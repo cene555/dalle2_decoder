@@ -1,4 +1,4 @@
-from glide_text2im.gaussian_diffusion import get_named_beta_schedule
+from dalle2_decoder.gaussian_diffusion import get_named_beta_schedule
 from . import gaussian_diffusion as gd
 from .respace import SpacedDiffusion, space_timesteps
 from dalle2_decoder.text2im_model import (
